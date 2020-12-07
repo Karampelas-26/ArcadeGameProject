@@ -1,2 +1,5 @@
 ﻿  Main.cpp
+C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\Demo\Main.cpp(27,1): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\Demo\Main.cpp(28,1): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\Demo\Main.cpp(29,1): warning C4305: '=': truncation from 'double' to 'float'
   Demo.vcxproj -> C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\Demo\x64\Debug\Demod.exe

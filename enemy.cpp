@@ -1,27 +1,41 @@
 #include <iostream>
 #include "enemy.h"
 #include "config.h"
-
+#include "math.h"
+	
 
 
 void Enemy::update()
 {
 		enemy_y += speed * graphics::getDeltaTime() / 1000.0f;
-
-		enemybullets.push_back((*new Enemybullet(enemy_x, enemy_y)));
+		int time = (int) graphics::getGlobalTime();
+		int fireRate = time % 500;
+		float offset = 0.5f + 0.5f * sinf(graphics::getGlobalTime() / 10);
+		if (fireRate == 0)
+			enemybullets.push_back((*new Enemybullet(enemy_x, enemy_y)));
 
 		if (!enemybullets.empty())
 		{
-			for (std::vector<Enemybullet>::iterator it = enemybullets.begin(); it != enemybullets.end(); ++it)
+			std::list<Enemybullet>::iterator i = enemybullets.begin();
+			while (i != enemybullets.end())
 			{
-				//it=it->erase(enemybullets.begin());
 
-				(*it).update();
+				if (i->im_a_valid_bullet())
+				{
+					enemybullets.erase(i++);  // alternatively, i = items.erase(i);
+				}
+				else
+				{
+					i->update();
+					++i;
+				}
 			}
+
 			
 		}
 		
 }
+
 void Enemy::draw()
 {
 	graphics::Brush br;
@@ -30,14 +44,22 @@ void Enemy::draw()
 	graphics::drawRect(enemy_x, enemy_y, 50, 60, br);
 	if (!enemybullets.empty())
 	{
-		for (std::vector<Enemybullet>::iterator it = enemybullets.begin(); it != enemybullets.end(); ++it)
+		std::list<Enemybullet>::iterator i = enemybullets.begin();
+		while (i != enemybullets.end())
 		{
-			(*it).draw();
-			
+
+			if (i->im_a_valid_bullet())
+			{
+				enemybullets.erase(i++); 
+			}
+			else
+			{
+				i->draw();
+				++i;
+			}
 		}
-		//enemybullets.erase(enemybullets.begin());
+
 	}
-	//enemybullets.erase(enemybullets.begin());
 }
 
 void Enemy::init()

@@ -31,13 +31,29 @@ void Player::update()
 	}
 	if (!bullets.empty())
 	{
-		for (std::list<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it)
+		/*for (std::list<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it)
 		{
 			it->update();
 			if(it->im_a_valid_bullet())
 				it = bullets.erase(it);
 			
+		}*/
+
+		std::list<Bullet>::iterator i = bullets.begin();
+		while (i != bullets.end())
+		{
+			
+			if (i->im_a_valid_bullet())
+			{
+				bullets.erase(i++);  // alternatively, i = items.erase(i);
+			}
+			else
+			{
+				i->update();
+				++i;
+			}
 		}
+
 	}
 	
 	

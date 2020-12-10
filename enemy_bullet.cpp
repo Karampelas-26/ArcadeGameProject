@@ -11,12 +11,17 @@ void Enemybullet::draw()
 
 void Enemybullet::update()
 {
-	enemy_bullet_start_y += speed * graphics::getDeltaTime() / 1.0f;
+	enemy_bullet_start_y += speed * graphics::getDeltaTime() / 10.0f;
 
 }
 
 void Enemybullet::init()
 {
+}
+
+bool Enemybullet::im_a_valid_bullet()
+{
+	return enemy_bullet_start_y > CANVAS_HEIGHT - 50;
 }
 
 Enemybullet::Enemybullet(float enemy_bullet_start_x, float enemy_bullet_start_y)

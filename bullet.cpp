@@ -3,7 +3,7 @@
 bool Bullet::im_a_valid_bullet()
 {
 	
-	return bullet_start_y < -50;
+	return bullet_start_y < -50; //legit it is working
 }
 
 void Bullet::draw()

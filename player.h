@@ -13,8 +13,8 @@ class Player : public GameObject
 	float player_x = CANVAS_WIDTH / 2;
 	float player_y = CANVAS_HEIGHT / 2;
 	std::list<Bullet> bullets;
-	//bool initializeEnemy = true;
-	//Enemy* enemy = nullptr;
+	bool initializeEnemy = true;
+	Enemy* enemy = nullptr;
 	
 	
 public:

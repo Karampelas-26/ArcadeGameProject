@@ -10,6 +10,7 @@ class Enemybullet : public GameObject
 	float enemy_bullet_start_x;
 	float enemy_bullet_start_y;
 public:
+	bool im_a_valid_bullet();
 	void draw() override;
 	void update() override;
 	void init() override;

@@ -14,36 +14,35 @@ void Game::update()
 	{
 		player->update();
 	}
-	/*if (initializeEnemy && graphics::getGlobalTime() > 2000) {
+	if (initializeEnemy && graphics::getGlobalTime() > 2000) {
 		enemy = new Enemy();
 		initializeEnemy = false;
 		
 	}
 	if (enemy) {
 		enemy->update();
-	}*/
-	//enemy->~Enemy();
+	}
 }
 
 
 void Game::draw()
 {
-	float offset = CANVAS_HEIGHT * exp(graphics::getDeltaTime() / 1000.0f)/2 ;
+	//float offset = CANVAS_HEIGHT * fmodf((graphics::getDeltaTime() / 1000.0f),100)/2 ;
 	//float offset = speed * graphics::getDeltaTime() / 180.0f;
 	//float offset = graphics::getDeltaTime();
 	graphics::Brush br;
 	br.outline_opacity = 0.0f;
 	br.texture = std::string(ASSETS_PATH) + "water.png";
-	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT /2 + offset, CANVAS_WIDTH,4 * CANVAS_HEIGHT, br);
+	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT /2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 	
 	if (player)
 	{
 		player->draw();
 	}
-	/*if (enemy) 
+	if (enemy) 
 	{
 		enemy->draw();
-	}*/
+	}
 	//enemy->~Enemy();
 }
 
@@ -59,5 +58,6 @@ Game::Game()
 Game::~Game()
 {
 	delete player;
+	delete enemy;
 	//enemy->~Enemy();
 }

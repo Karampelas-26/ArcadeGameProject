@@ -14,7 +14,7 @@ void Enemy::update()
 		{
 			for (std::vector<Enemybullet>::iterator it = enemybullets.begin(); it != enemybullets.end(); ++it)
 			{
-				//enemybullets.erase(enemybullets.begin());
+				//it=it->erase(enemybullets.begin());
 
 				(*it).update();
 			}

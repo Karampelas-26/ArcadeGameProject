@@ -5,6 +5,8 @@
 
 void Player::update()
 {
+	graphics::MouseState mouse;
+	graphics::getMouseState(mouse);
 	if (graphics::getKeyState(graphics::SCANCODE_W))
 	{
 		player_y -= speed * graphics::getDeltaTime() / 10.0f;
@@ -21,16 +23,19 @@ void Player::update()
 	{
 		player_x += speed * graphics::getDeltaTime() / 10.0f;
 	}
-	if (graphics::getKeyState(graphics::SCANCODE_K))
+	
+	if (mouse.button_left_released)
 	{
 		bullets.push_back((*new Bullet(player_x, player_y)));
 		
 	}
 	if (!bullets.empty())
 	{
-		for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it)
+		for (std::list<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it)
 		{
-			(*it).update();
+			it->update();
+			if(it->im_a_valid_bullet())
+				it = bullets.erase(it);
 			
 		}
 	}
@@ -67,7 +72,7 @@ void Player::draw()
 
 	if (!bullets.empty())
 	{
-		for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it)
+		for (std::list<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it)
 		{
 			it->draw();
 			

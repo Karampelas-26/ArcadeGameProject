@@ -14,14 +14,14 @@ void Game::update()
 	{
 		player->update();
 	}
-	if (initializeEnemy && graphics::getGlobalTime() > 2000) {
+	/*if (initializeEnemy && graphics::getGlobalTime() > 2000) {
 		enemy = new Enemy();
 		initializeEnemy = false;
 		
 	}
 	if (enemy) {
 		enemy->update();
-	}
+	}*/
 	//enemy->~Enemy();
 }
 
@@ -40,16 +40,16 @@ void Game::draw()
 	{
 		player->draw();
 	}
-	if (enemy) 
+	/*if (enemy) 
 	{
 		enemy->draw();
-	}
+	}*/
 	//enemy->~Enemy();
 }
 
 void Game::init()
 {
-	graphics::playMusic(std::string(ASSETS_PATH) + "music.mp3", 0.5f, true, 4000);
+	//graphics::playMusic(std::string(ASSETS_PATH) + "music.mp3", 0.5f, true, 4000);
 }
 
 Game::Game()
@@ -59,5 +59,5 @@ Game::Game()
 Game::~Game()
 {
 	delete player;
-	enemy->~Enemy();
+	//enemy->~Enemy();
 }

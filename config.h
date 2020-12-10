@@ -1,0 +1,5 @@
+#define	WINDOWS_WIDTH 800
+#define WINDOWS_HEIGHT 1000
+#define CANVAS_WIDTH 800
+#define CANVAS_HEIGHT 1000
+#define ASSETS_PATH "assets\\"

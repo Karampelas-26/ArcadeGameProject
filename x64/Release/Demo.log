@@ -1,0 +1,10 @@
+﻿  bullet.cpp
+  enemy.cpp
+  game.cpp
+  Main.cpp
+  player.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 234 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Demo.vcxproj -> C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject-development\ArcadeGameProject-development\x64\Release\Demo.exe

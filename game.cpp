@@ -49,6 +49,7 @@ void Game::draw()
 void Game::init()
 {
 	//graphics::playMusic(std::string(ASSETS_PATH) + "music.mp3", 0.5f, true, 4000);
+	//enemy->init();
 }
 
 Game::Game()

@@ -7,7 +7,7 @@
 
 void Enemy::update()
 {
-		enemy_y += speed * graphics::getDeltaTime() / 1000.0f;
+		enemy_x += speed * graphics::getDeltaTime() / 1000.0f;
 		int time = (int) graphics::getGlobalTime();
 		int fireRate = time % 500;
 		float offset = 0.5f + 0.5f * sinf(graphics::getGlobalTime() / 10);
@@ -64,6 +64,17 @@ void Enemy::draw()
 
 void Enemy::init()
 {
+	
+}
+
+float Enemy::getEnemy_x()
+{
+	return enemy_x;
+}
+
+float Enemy::getEnemy_y()
+{
+	return enemy_y;
 }
 
 Enemy::Enemy()

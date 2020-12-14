@@ -23,11 +23,19 @@ int main() {
     graphics::setUserData(&game);
     graphics::setDrawFunction(draw);
     graphics::setUpdateFunction(update);
+<<<<<<< HEAD
     //graphics::setFullScreen(true);
+=======
+    graphics::setFullScreen(true);
+>>>>>>> remotes/origin/development
 
     graphics::setCanvasSize(CANVAS_WIDTH,CANVAS_HEIGHT);
     graphics::setCanvasScaleMode(graphics::CANVAS_SCALE_FIT);
     game.init();
     graphics::startMessageLoop();
+<<<<<<< HEAD
+=======
+    game.~Game();
+>>>>>>> remotes/origin/development
 	return 0;
 }

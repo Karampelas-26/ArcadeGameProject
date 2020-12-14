@@ -1,5 +1,14 @@
 #include "bullet.h"
 
+<<<<<<< HEAD
+=======
+bool Bullet::im_a_valid_bullet()
+{
+	
+	return bullet_start_y < -50; //legit it is working
+}
+
+>>>>>>> remotes/origin/development
 void Bullet::draw()
 {
 

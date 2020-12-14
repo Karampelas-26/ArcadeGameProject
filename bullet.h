@@ -10,6 +10,10 @@ class Bullet : public GameObject
 	float bullet_start_x;
 	float bullet_start_y;
 public:
+<<<<<<< HEAD
+=======
+	bool im_a_valid_bullet();
+>>>>>>> remotes/origin/development
 	void draw() override;
 	void update() override;
 	void init() override;

@@ -14,7 +14,7 @@ class Enemy : public GameObject
 	bool initializeBullet = true;
 	
 public:
-	
+	bool enemyisActive();
 	void draw() override;
 	void update() override;
 	void init() override;

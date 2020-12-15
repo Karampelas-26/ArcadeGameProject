@@ -30,10 +30,15 @@ void Enemy::update()
 					++i;
 				}
 			}
-
-			
 		}
-		
+		if (enemy_x > CANVAS_WIDTH) {
+			enemy_x = 0.0f;
+		}
+}
+
+bool Enemy::enemyisActive()
+{
+	return true;
 }
 
 void Enemy::draw()
@@ -79,7 +84,7 @@ float Enemy::getEnemy_y()
 
 Enemy::Enemy()
 {
-	
+	init();
 }
 
 Enemy::~Enemy()

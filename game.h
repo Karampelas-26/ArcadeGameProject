@@ -10,6 +10,7 @@ class Game
 	Enemy* enemy = nullptr;
 	bool initializePlayer = true;
 	bool initializeEnemy = true;
+	
 public:
 	void draw();
 	void update();

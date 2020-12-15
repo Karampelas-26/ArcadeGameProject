@@ -1,6 +1,4 @@
-﻿  Main.cpp
-  enemy.cpp
-  game.cpp
-  player.cpp
+﻿  game.cpp
+  utils.cpp
   Generating Code...
   Demo.vcxproj -> C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject\x64\Debug\Demod.exe

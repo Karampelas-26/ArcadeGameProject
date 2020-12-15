@@ -147,12 +147,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="bullet.cpp" />
-<<<<<<< HEAD
-=======
+
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemy_bullet.cpp" />
     <ClCompile Include="enemy_bullet.h" />
->>>>>>> remotes/origin/development
+
     <ClCompile Include="game.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="player.cpp" />
@@ -160,10 +159,9 @@
   <ItemGroup>
     <ClInclude Include="bullet.h" />
     <ClInclude Include="config.h" />
-<<<<<<< HEAD
-=======
+
     <ClInclude Include="enemy.h" />
->>>>>>> remotes/origin/development
+
     <ClInclude Include="game.h" />
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="player.h" />

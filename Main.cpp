@@ -24,9 +24,13 @@ int main() {
     graphics::setDrawFunction(draw);
     graphics::setUpdateFunction(update);
 <<<<<<< HEAD
+<<<<<<< HEAD
     //graphics::setFullScreen(true);
 =======
     graphics::setFullScreen(true);
+>>>>>>> remotes/origin/development
+=======
+    //graphics::setFullScreen(true);
 >>>>>>> remotes/origin/development
 
     graphics::setCanvasSize(CANVAS_WIDTH,CANVAS_HEIGHT);

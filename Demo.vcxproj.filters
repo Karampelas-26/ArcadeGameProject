@@ -38,6 +38,12 @@
     <ClCompile Include="enemy_bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
+>>>>>>> remotes/origin/development
+=======
+    <ClCompile Include="utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
 >>>>>>> remotes/origin/development
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +65,12 @@
 <<<<<<< HEAD
 =======
     <ClInclude Include="enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+<<<<<<< HEAD
+>>>>>>> remotes/origin/development
+=======
+    <ClInclude Include="utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
 >>>>>>> remotes/origin/development

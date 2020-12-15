@@ -4,4 +4,9 @@ C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\Demo\x64\Debug\Demod.pdb
 =======
 C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\ArcadeGameProject\ArcadeGameProject\x64\Debug\Demod.exe
 C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\ArcadeGameProject\ArcadeGameProject\x64\Debug\Demod.pdb
+<<<<<<< HEAD
+>>>>>>> remotes/origin/development
+=======
+C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject\x64\Debug\Demod.exe
+C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject\x64\Debug\Demod.pdb
 >>>>>>> remotes/origin/development

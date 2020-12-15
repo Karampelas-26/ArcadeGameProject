@@ -18,6 +18,10 @@ class Game
 	Enemy* enemy = nullptr;
 	bool initializePlayer = true;
 	bool initializeEnemy = true;
+<<<<<<< HEAD
+>>>>>>> remotes/origin/development
+=======
+	
 >>>>>>> remotes/origin/development
 public:
 	void draw();

@@ -8,16 +8,18 @@
 class Enemy : public GameObject
 {
 	float speed = 10.0f;
-	float enemy_x = CANVAS_WIDTH/2;
-	float enemy_y = 0;
+	float enemy_x = 0.0f;
+	float enemy_y = 200.f;
 	std::list<Enemybullet> enemybullets;
 	bool initializeBullet = true;
 	
 public:
-	
+	bool enemyisActive();
 	void draw() override;
 	void update() override;
 	void init() override;
+	float getEnemy_x();
+	float getEnemy_y();
 	Enemy();
 	~Enemy();
 };

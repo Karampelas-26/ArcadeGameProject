@@ -1,12 +1,16 @@
 #include <iostream>
 #include "player.h"
 #include "config.h"
+#include "game.h"
 
+Player::Player(const Game& mygame)
+	:GameObject(mygame)
+{
+}
 
 void Player::update()
 {
-	graphics::MouseState mouse;
-	graphics::getMouseState(mouse);
+	
 	if (graphics::getKeyState(graphics::SCANCODE_W))
 	{
 		player_y -= speed * graphics::getDeltaTime() / 10.0f;
@@ -24,37 +28,28 @@ void Player::update()
 		player_x += speed * graphics::getDeltaTime() / 10.0f;
 	}
 	
-	if (mouse.button_left_released)
-	{
-		bullets.push_back((*new Bullet(player_x, player_y)));
-		
-	}
-	if (!bullets.empty())
-	{
-		/*for (std::list<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it)
-		{
-			it->update();
-			if(it->im_a_valid_bullet())
-				it = bullets.erase(it);
-			
-		}*/
-
-		std::list<Bullet>::iterator i = bullets.begin();
-		while (i != bullets.end())
-		{
-			
-			if (i->im_a_valid_bullet())
-			{
-				bullets.erase(i++);  // alternatively, i = items.erase(i);
-			}
-			else
-			{
-				i->update();
-				++i;
-			}
-		}
-
-	}
+	//if (mouse.button_left_released)
+	//{
+	//	bullets.push_back((*new Bullet(, player_x, player_y)));
+	//	
+	//}
+	//if (!bullets.empty())
+	//{
+	//	std::list<Bullet>::iterator i = bullets.begin();
+	//	while (i != bullets.end())
+	//	{
+	//		
+	//		if (i->im_a_valid_bullet())
+	//		{
+	//			bullets.erase(i++);  // alternatively, i = items.erase(i);
+	//		}
+	//		else
+	//		{
+	//			i->update();
+	//			++i;
+	//		}
+	//	}
+	//}
 	
 	
 	
@@ -84,16 +79,16 @@ void Player::draw()
 	graphics::Brush br;
 	br.outline_opacity = 0.0f;
 	br.texture = std::string(ASSETS_PATH) + "airplane.png";
-	graphics::drawRect(player_x, player_y, 160, 110, br);
+	graphics::drawRect(player_x, player_y, 80, 55, br);
 
-	if (!bullets.empty())
+	/*if (!bullets.empty())
 	{
 		for (std::list<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it)
 		{
 			it->draw();
 			
 		}
-	}
+	}*/
 	
 }
 
@@ -101,8 +96,14 @@ void Player::init()
 {
 }
 
-Player::Player()
+float Player::getPlayer_x()
 {
+	return player_x;
+}
+
+float Player::getPlayer_y()
+{
+	return player_y;
 }
 
 Player::~Player()

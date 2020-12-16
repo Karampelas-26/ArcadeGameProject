@@ -3,6 +3,7 @@
 #include "config.h"
 #include "gameobject.h"
 
+
 class Bullet : public GameObject
 {
 
@@ -14,7 +15,8 @@ public:
 	void draw() override;
 	void update() override;
 	void init() override;
-	Bullet(float bullet_start_x, float bullet_start_y);
+	//Bullet(float bullet_start_x, float bullet_start_y);
+	Bullet(const class Game& mygame, float bullet_start_x, float bullet_start_y);
 	~Bullet();
 	float getBullet_start_y();
 };

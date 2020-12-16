@@ -2,16 +2,16 @@
 #include "graphics.h"
 #include "config.h"
 #include "gameobject.h"
-#include "enemy_bullet.h"
-#include <list>
+//#include "enemy_bullet.h"
+//#include <list>
 
 class Enemy : public GameObject
 {
-	float speed = 10.0f;
-	float enemy_x = 0.0f;
-	float enemy_y = 200.f;
-	std::list<Enemybullet> enemybullets;
-	bool initializeBullet = true;
+	float speed = 17.0;
+	float enemy_x;
+	float enemy_y = 0.0f;
+	//std::list<Enemybullet> enemybullets;
+	//bool initializeBullet = true;
 	
 public:
 	bool enemyisActive();
@@ -20,6 +20,6 @@ public:
 	void init() override;
 	float getEnemy_x();
 	float getEnemy_y();
-	Enemy();
+	Enemy(const class Game& mygame);
 	~Enemy();
 };

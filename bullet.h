@@ -7,7 +7,7 @@
 class Bullet : public GameObject
 {
 
-	float speed = 10;
+	float speed = 10.0f;
 	float bullet_start_x;
 	float bullet_start_y;
 public:

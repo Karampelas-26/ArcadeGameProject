@@ -1,7 +1,7 @@
 ﻿  Main.cpp
-  bullet.cpp
+  enemy.cpp
   game.cpp
   gameobject.cpp
   player.cpp
   Generating Code...
-  Demo.vcxproj -> C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\ArcadeGameProject\x64\Debug\Demod.exe
+  Demo.vcxproj -> C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject\x64\Debug\Demod.exe

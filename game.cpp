@@ -42,14 +42,14 @@ void Game::update()
 	}
 
 
-	/*if (initializeEnemy && graphics::getGlobalTime() > 2000) {
+	if (initializeEnemy && graphics::getGlobalTime() > 2000) {
 		enemy = new Enemy((*this));
 		initializeEnemy = false;
 		
 	}
 	if (enemy) {
 		enemy->update();
-	}*/
+	}
 
 }	
 
@@ -78,10 +78,10 @@ void Game::draw()
 		}
 	}
 
-	/*if (enemy) 
+	if (enemy) 
 	{
 		enemy->draw();
-	}*/
+	}
 }
 
 void Game::init()
@@ -98,6 +98,7 @@ Game::~Game()
 {
 	delete player;
 	player = nullptr;
-	//delete enemy;
+	delete enemy;
+	enemy = nullptr;
 	//enemy->~Enemy();
 }

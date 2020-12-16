@@ -1,2 +1,11 @@
 #pragma once
-float offset();
+
+struct Disk{
+	float dx;
+	float dy;
+	float radius;
+	bool collission(Disk &disk);
+public:
+	Disk(float dx,float dy,float radius);
+};
+		

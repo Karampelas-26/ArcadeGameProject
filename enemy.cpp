@@ -64,6 +64,13 @@ void Enemy::draw()
 		}
 
 	}*/
+
+	graphics::Brush brush;
+	brush.fill_color[0] = 1.0f;
+	brush.fill_color[1] = 0.3f;
+	brush.fill_color[2] = 0.3f;
+	brush.fill_opacity = 0.5f;
+	graphics::drawDisk(enemy_x, enemy_y, 30.0f, brush);
 }
 
 void Enemy::init()
@@ -89,4 +96,13 @@ Enemy::Enemy(const  Game& mygame)
 
 Enemy::~Enemy()
 {
+}
+
+Disk Enemy::getCollisionHull() const
+{
+	Disk disk;
+	disk.dx = enemy_x;
+	disk.dy = enemy_y;
+	disk.radius = 30.0f;
+	return disk;
 }

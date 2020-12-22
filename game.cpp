@@ -4,6 +4,7 @@
 #include <iostream>
 
 
+
 void Game::update()
 {
 	graphics::MouseState mouse;
@@ -51,8 +52,31 @@ void Game::update()
 		enemy->update();
 	}
 
+	if (checkCollision()) {
+		delete enemy;
+		enemy = nullptr;
+		initializeEnemy = true;
+	}
+
 }	
 
+
+bool Game::checkCollision()
+{
+	if (!player || !enemy) {
+		return false;
+	}
+	Disk player_disk = player->getCollisionHull();
+	Disk enemy_disk = enemy->getCollisionHull();
+	
+	float dx = pow(player_disk.dx - enemy_disk.dx, 2);
+	float dy = pow(player_disk.dy - enemy_disk.dy, 2);
+
+	if (sqrt(dx + dy) < player_disk.radius + enemy_disk.radius)
+		return true;
+	else
+		return false;
+}
 
 void Game::draw()
 {
@@ -82,6 +106,8 @@ void Game::draw()
 	{
 		enemy->draw();
 	}
+
+	
 }
 
 void Game::init()

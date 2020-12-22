@@ -8,7 +8,7 @@
 
 
 
-class Player : public GameObject
+class Player : public GameObject , public Collidable
 {
 
 	float speed = 5.0f;
@@ -27,4 +27,5 @@ public:
 	float getPlayer_x();
 	float getPlayer_y();
 	~Player();
+	Disk getCollisionHull() const override;
 };

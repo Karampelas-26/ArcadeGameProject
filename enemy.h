@@ -5,7 +5,7 @@
 //#include "enemy_bullet.h"
 //#include <list>
 
-class Enemy : public GameObject
+class Enemy : public GameObject , public Collidable
 {
 	float speed = 17.0;
 	float enemy_x;
@@ -22,4 +22,5 @@ public:
 	float getEnemy_y();
 	Enemy(const class Game& mygame);
 	~Enemy();
+	Disk getCollisionHull() const override;
 };

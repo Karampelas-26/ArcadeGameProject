@@ -15,7 +15,8 @@ class Game
 	bool initializePlayer = true;
 	bool initializeEnemy = true;
 	std::list<Bullet> bullets;
-	
+	bool checkCollision();
+
 public:
 	void draw();
 	void update();

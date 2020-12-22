@@ -4,8 +4,7 @@
 #include "gameobject.h"
 
 
-class Bullet : public GameObject
-{
+class Bullet : public GameObject, public Collidable {
 
 	float speed = 10.0f;
 	float bullet_start_x;
@@ -19,4 +18,5 @@ public:
 	Bullet(const class Game& mygame, float bullet_start_x, float bullet_start_y);
 	~Bullet();
 	float getBullet_start_y();
+	Disk getCollisionHull() const override;
 };

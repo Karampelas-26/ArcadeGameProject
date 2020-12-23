@@ -9,13 +9,17 @@
 
 class Game 
 {
+	std::string str = "Score: 0";
 	float speed = 10.f;
 	Player* player = nullptr;
 	Enemy* enemy = nullptr;
 	bool initializePlayer = true;
 	bool initializeEnemy = true;
 	std::list<Bullet> bullets;
-	bool checkCollision();
+	bool checkCollision(Disk disk1, Disk disk2);
+	std::list<Enemybullet> enemybullets;
+	bool initializeBullet = true;
+	bool initializeEnemyBullet = true;
 
 public:
 	void draw();

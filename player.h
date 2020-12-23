@@ -10,13 +10,13 @@
 
 class Player : public GameObject , public Collidable
 {
-
+	int life = 10;
+	int score = 0;
 	float speed = 5.0f;
 	float player_x = CANVAS_WIDTH / 2;
 	float player_y = CANVAS_HEIGHT / 2;
-	/*std::list<Bullet> bullets;*/
 	bool initializeEnemy = true;
-	/*Enemy* enemy = nullptr;*/
+	
 	
 	
 public:
@@ -28,4 +28,8 @@ public:
 	float getPlayer_y();
 	~Player();
 	Disk getCollisionHull() const override;
+	void decreaseLife();
+	void increaseScore();
+	int getScore();
+	bool isAlive();
 };

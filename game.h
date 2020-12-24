@@ -4,12 +4,13 @@
 #include "bullet.h"
 #include <list>
 #include "enemy.h"
+#include "effects.h"
 
 
 
 class Game 
 {
-	std::string str = "Score: 0";
+	
 	float speed = 10.f;
 	Player* player = nullptr;
 	Enemy* enemy = nullptr;
@@ -20,6 +21,7 @@ class Game
 	std::list<Enemybullet> enemybullets;
 	bool initializeBullet = true;
 	bool initializeEnemyBullet = true;
+	Effects* effect = nullptr;
 
 public:
 	void draw();

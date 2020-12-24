@@ -10,8 +10,6 @@ class Enemy : public GameObject , public Collidable
 	float speed = 17.0;
 	float enemy_x;
 	float enemy_y = 0.0f;
-	/*std::list<Enemybullet> enemybullets;
-	bool initializeBullet = true;*/
 	float fireRate;
 public:
 	float getFireRate();
@@ -24,4 +22,5 @@ public:
 	Enemy(const class Game& mygame);
 	~Enemy();
 	Disk getCollisionHull() const override;
+	
 };

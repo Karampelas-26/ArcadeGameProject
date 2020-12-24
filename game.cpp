@@ -1,4 +1,4 @@
-#include "game.h"
+﻿#include "game.h"
 #include "config.h"
 #include "utils.h"
 #include <iostream>
@@ -77,6 +77,8 @@ void Game::update()
 	//check collisions enemy with player
 	if (player && enemy) {
 		if (checkCollision(player->getCollisionHull(), enemy->getCollisionHull())) {
+			graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.7f, false);
+			Effects* effect = new Effects(*this,enemy->getEnemy_x(), enemy->getEnemy_y());
 			delete enemy;
 			enemy = nullptr;
 			initializeEnemy = true;
@@ -93,7 +95,7 @@ void Game::update()
 			}
 		}
 	}
-	//check collisio each bullet with enemy
+	//check collision each bullet with enemy
 	if (enemy && !bullets.empty()) {
 		std::list<Bullet>::iterator i = bullets.begin();
 		while (i != bullets.end())
@@ -101,6 +103,7 @@ void Game::update()
 
 			if (enemy && checkCollision(enemy->getCollisionHull(), i->getCollisionHull()))
 			{
+				graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.2f, false);
 				delete enemy;
 				enemy = nullptr;
 				initializeEnemy = true;
@@ -121,6 +124,7 @@ void Game::update()
 
 			if (player && checkCollision(player->getCollisionHull(), i->getCollisionHull()))
 			{
+				graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.2f, false);
 				if (player->isAlive()) 
 				{
 					delete player;
@@ -175,7 +179,6 @@ void Game::draw()
 			for (std::list<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it)
 			{
 				it->draw();
-
 			}
 		}
 	}
@@ -190,7 +193,6 @@ void Game::draw()
 		std::list<Enemybullet>::iterator i = enemybullets.begin();
 		while (i != enemybullets.end())
 		{
-
 			if (i->im_a_valid_bullet())
 			{
 				enemybullets.erase(i++);
@@ -201,24 +203,29 @@ void Game::draw()
 				++i;
 			}
 		}
-
 	}
 	//draw life points
 	if (player) {
-		str = "Score: " + player->getScore();
+		char str[40];
+		sprintf_s(str, "Score: %d", player->getScore());
+
+		graphics::Brush brush;
+		brush.fill_color[0] = 1.0f;
+		brush.fill_color[1] = 0.2f;
+		brush.fill_color[2] = 0.2f;
+
+		graphics::drawText(250.0f, 750.0f, 25.0f, str, brush);
 	}
+
+	if (effect) {
 	
-	graphics::Brush brush;
-	brush.fill_color[0] = 1.0f;
-	brush.fill_color[1] = 0.2f;
-	brush.fill_color[2] = 0.2f;
-	
-	graphics::drawText(50.0f, 50.0f, 25.0f, str, brush);
+		effect->draw();
+	}
 }
 
 void Game::init()
 {
-	//graphics::playMusic(std::string(ASSETS_PATH) + "music.mp3", 0.3f, true, 4000);
+	graphics::playMusic(std::string(ASSETS_PATH) + "music.mp3", 0.05f, true, 4000);
 	graphics::setFont(std::string(ASSETS_PATH) + "font.ttf");
 }
 

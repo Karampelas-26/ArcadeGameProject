@@ -70,3 +70,5 @@ Disk Enemy::getCollisionHull() const
 	disk.radius = 30.0f;
 	return disk;
 }
+
+

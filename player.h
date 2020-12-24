@@ -10,6 +10,7 @@
 
 class Player : public GameObject , public Collidable
 {
+	
 	int life = 10;
 	int score = 0;
 	float speed = 5.0f;

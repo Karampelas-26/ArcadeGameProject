@@ -1,2 +1,9 @@
 #pragma once
-float offset();
+
+struct Disk{
+	float dx;
+	float dy;
+	float radius;
+	
+};
+		

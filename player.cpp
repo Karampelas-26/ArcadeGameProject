@@ -28,33 +28,6 @@ void Player::update()
 		player_x += speed * graphics::getDeltaTime() / 10.0f;
 	}
 	
-	//if (mouse.button_left_released)
-	//{
-	//	bullets.push_back((*new Bullet(, player_x, player_y)));
-	//	
-	//}
-	//if (!bullets.empty())
-	//{
-	//	std::list<Bullet>::iterator i = bullets.begin();
-	//	while (i != bullets.end())
-	//	{
-	//		
-	//		if (i->im_a_valid_bullet())
-	//		{
-	//			bullets.erase(i++);  // alternatively, i = items.erase(i);
-	//		}
-	//		else
-	//		{
-	//			i->update();
-	//			++i;
-	//		}
-	//	}
-	//}
-	
-	
-	
-	
-
 	if (player_x < 0)
 	{
 		player_x = 0;
@@ -81,14 +54,13 @@ void Player::draw()
 	br.texture = std::string(ASSETS_PATH) + "airplane.png";
 	graphics::drawRect(player_x, player_y, 80, 55, br);
 
-	/*if (!bullets.empty())
-	{
-		for (std::list<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it)
-		{
-			it->draw();
-			
-		}
-	}*/
+	//draw disk of collision
+	graphics::Brush brush;
+	brush.fill_color[0] = 0.3f;
+	brush.fill_color[1] = 1.0f;
+	brush.fill_color[2] = 0.3f;
+	brush.fill_opacity = 0.5f;
+	graphics::drawDisk(player_x, player_y, 30.0f, brush);
 	
 }
 
@@ -108,4 +80,33 @@ float Player::getPlayer_y()
 
 Player::~Player()
 {
+}
+
+Disk Player::getCollisionHull() const
+{
+	Disk disk;
+	disk.dx = player_x;
+	disk.dy = player_y;
+	disk.radius = 30.0f;
+	return disk;
+}
+
+void Player::decreaseLife()
+{
+	this->life--;
+}
+
+void Player::increaseScore()
+{
+	this->score += 10;
+}
+
+int Player::getScore()
+{
+	return this->score;
+}
+
+bool Player::isAlive()
+{
+	return life == 0;
 }

@@ -5,21 +5,22 @@
 #include "enemy_bullet.h"
 #include <list>
 
-class Enemy : public GameObject
+class Enemy : public GameObject , public Collidable
 {
-	float speed = 10.0f;
-	float enemy_x = 0.0f;
-	float enemy_y = 200.f;
-	std::list<Enemybullet> enemybullets;
-	bool initializeBullet = true;
-	
+	float speed = 17.0;
+	float enemy_x;
+	float enemy_y = 0.0f;
+	float fireRate;
 public:
+	float getFireRate();
 	bool enemyisActive();
 	void draw() override;
 	void update() override;
 	void init() override;
 	float getEnemy_x();
 	float getEnemy_y();
-	Enemy();
+	Enemy(const class Game& mygame);
 	~Enemy();
+	Disk getCollisionHull() const override;
+	
 };

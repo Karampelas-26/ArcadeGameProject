@@ -1,2 +1,14 @@
+<<<<<<< HEAD
 ﻿  game.cpp
   Demo.vcxproj -> C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\ArcadeGameProject\x64\Debug\Demod.exe
+=======
+﻿  Main.cpp
+  effects.cpp
+  game.cpp
+C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject\game.cpp(152,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject\game.cpp(153,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  gameobject.cpp
+  player.cpp
+  Generating Code...
+  Demo.vcxproj -> C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject\x64\Debug\Demod.exe
+>>>>>>> b76f72d6cadc3bf44460268df4724c264e934c84

@@ -53,8 +53,10 @@ void Game::update()
 
 		//enemy bullet
 		if (initializeEnemyBullet) {
-			enemybullets.push_back((*new Enemybullet(*this, enemy->getEnemy_x(), enemy->getEnemy_y())));
-			initializeEnemyBullet = false;
+			if (enemy->Foo()) {
+				enemybullets.push_back((*new Enemybullet(*this, enemy->getEnemy_x(), enemy->getEnemy_y())));
+				initializeEnemyBullet = false;
+			}
 		}
 		if (!enemybullets.empty())
 		{
@@ -78,7 +80,9 @@ void Game::update()
 	if (player && enemy) {
 		if (checkCollision(player->getCollisionHull(), enemy->getCollisionHull())) {
 			graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.7f, false);
-			Effects* effect = new Effects(*this,enemy->getEnemy_x(), enemy->getEnemy_y());
+			effect = new Effects(*this,enemy->getEnemy_x(), enemy->getEnemy_y());
+			ableEffect = true;
+			timeEffect = graphics::getGlobalTime();
 			delete enemy;
 			enemy = nullptr;
 			initializeEnemy = true;
@@ -92,6 +96,7 @@ void Game::update()
 			else
 			{
 				player->decreaseLife();
+				player->increaseScore();
 			}
 		}
 	}
@@ -104,6 +109,9 @@ void Game::update()
 			if (enemy && checkCollision(enemy->getCollisionHull(), i->getCollisionHull()))
 			{
 				graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.2f, false);
+				effect = new Effects(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
+				ableEffect = true;
+				timeEffect = graphics::getGlobalTime();
 				delete enemy;
 				enemy = nullptr;
 				initializeEnemy = true;
@@ -125,8 +133,12 @@ void Game::update()
 			if (player && checkCollision(player->getCollisionHull(), i->getCollisionHull()))
 			{
 				graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.2f, false);
+				
 				if (player->isAlive()) 
 				{
+					effect = new Effects(*this, player->getPlayer_x(), player->getPlayer_y());
+					ableEffect = true;
+					timeEffect = graphics::getGlobalTime();
 					delete player;
 					player = nullptr;
 					initializePlayer = true;
@@ -142,6 +154,30 @@ void Game::update()
 			{
 				++i;
 			}
+		}
+	}
+	//collision enemy bullet with player bullet
+	if (!bullets.empty() && !enemybullets.empty())
+	{
+		std::list<Bullet>::iterator j = bullets.begin();
+		std::list<Enemybullet>::iterator i = enemybullets.begin();
+		while (i != enemybullets.end() )  
+		{
+			while (j != bullets.end()) 
+			{
+				if (checkCollision(j->getCollisionHull(), i->getCollisionHull()))
+				{
+					graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.8f, false);
+					bullets.erase(j++);
+					//enemybullets.erase(i++);
+					break;
+				}
+				else 
+				{
+					++j;
+				}
+			}
+			++i;
 		}
 	}
 }	
@@ -204,10 +240,12 @@ void Game::draw()
 			}
 		}
 	}
-	//draw life points
+	
 	if (player) {
+		//draw life points
 		char str[40];
 		sprintf_s(str, "Score: %d", player->getScore());
+		
 
 		graphics::Brush brush;
 		brush.fill_color[0] = 1.0f;
@@ -215,11 +253,18 @@ void Game::draw()
 		brush.fill_color[2] = 0.2f;
 
 		graphics::drawText(250.0f, 750.0f, 25.0f, str, brush);
+		//draw life
+		char life[40];
+		sprintf_s(life, "Life points: %d", player->getLife());
+
+		graphics::drawText(30.0f, 750.0f, 25.0f, life, brush);
 	}
 
 	if (effect) {
-	
-		effect->draw();
+		if (ableEffect && graphics::getGlobalTime() - timeEffect < 250)
+			effect->draw();
+		else
+			ableEffect = false;
 	}
 }
 

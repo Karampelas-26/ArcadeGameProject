@@ -5,9 +5,10 @@
 void Effects::draw()
 {
 	graphics::Brush br;
-	br.outline_opacity = 0.4f;
-	br.texture = std::string(ASSETS_PATH) + "explosion.png";
-	graphics::drawRect(cordinates_x, cordinates_y, 30.0f, 30.0f, br);
+	br.outline_opacity = 0.0f;
+	br.texture = std::string(ASSETS_PATH) + "explosion1.png";
+	graphics::drawRect(cordinates_x, cordinates_y, 60.0f, 60.0f, br);
+
 }
 
 void Effects::update()

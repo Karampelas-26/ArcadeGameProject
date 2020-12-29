@@ -1,4 +1,4 @@
 ﻿  game.cpp
-C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject\game.cpp(162,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject\game.cpp(163,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject\game.cpp(188,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject\game.cpp(189,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Demo.vcxproj -> C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject\x64\Debug\Demod.exe

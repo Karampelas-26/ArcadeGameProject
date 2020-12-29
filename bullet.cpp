@@ -12,7 +12,7 @@ void Bullet::draw()
 	graphics::Brush br;
 	br.texture = std::string(ASSETS_PATH) + "bullet.png";
 	br.outline_opacity = 0.0f;
-	graphics::drawRect(bullet_start_x, bullet_start_y , 20, 25, br);
+	graphics::drawRect(bullet_start_x, bullet_start_y - 15 , 20, 25, br);
 
 	//draw disk of collision
 	graphics::Brush brush;

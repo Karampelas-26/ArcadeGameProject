@@ -53,8 +53,10 @@ void Game::update()
 
 		//enemy bullet
 		if (initializeEnemyBullet) {
-			enemybullets.push_back((*new Enemybullet(*this, enemy->getEnemy_x(), enemy->getEnemy_y())));
-			initializeEnemyBullet = false;
+			if (enemy->Foo()) {
+				enemybullets.push_back((*new Enemybullet(*this, enemy->getEnemy_x(), enemy->getEnemy_y())));
+				initializeEnemyBullet = false;
+			}
 		}
 		if (!enemybullets.empty())
 		{
@@ -152,6 +154,30 @@ void Game::update()
 			{
 				++i;
 			}
+		}
+	}
+	//collision enemy bullet with player bullet
+	if (!bullets.empty() && !enemybullets.empty())
+	{
+		std::list<Bullet>::iterator j = bullets.begin();
+		std::list<Enemybullet>::iterator i = enemybullets.begin();
+		while (i != enemybullets.end() )  
+		{
+			while (j != bullets.end()) 
+			{
+				if (checkCollision(j->getCollisionHull(), i->getCollisionHull()))
+				{
+					graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.8f, false);
+					bullets.erase(j++);
+					//enemybullets.erase(i++);
+					break;
+				}
+				else 
+				{
+					++j;
+				}
+			}
+			++i;
 		}
 	}
 }	

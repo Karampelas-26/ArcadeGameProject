@@ -11,6 +11,8 @@ class Enemy : public GameObject , public Collidable
 	float enemy_x;
 	float enemy_y = 0.0f;
 	float fireRate;
+	float timer;
+
 public:
 	float getFireRate();
 	bool enemyisActive();
@@ -22,5 +24,5 @@ public:
 	Enemy(const class Game& mygame);
 	~Enemy();
 	Disk getCollisionHull() const override;
-	
+	bool Foo();
 };

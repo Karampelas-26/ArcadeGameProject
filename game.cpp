@@ -161,23 +161,33 @@ void Game::update()
 	{
 		std::list<Bullet>::iterator j = bullets.begin();
 		std::list<Enemybullet>::iterator i = enemybullets.begin();
+		bool ereaser = false;
 		while (i != enemybullets.end() )  
 		{
 			while (j != bullets.end()) 
 			{
 				if (checkCollision(j->getCollisionHull(), i->getCollisionHull()))
 				{
-					graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.8f, false);
+					graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.2f, false);
 					bullets.erase(j++);
 					//enemybullets.erase(i++);
+					ereaser = true;
 					break;
 				}
 				else 
 				{
 					++j;
+					ereaser = false;
 				}
 			}
-			++i;
+			if (ereaser)
+			{
+				enemybullets.erase(i++);
+			}
+			else
+			{
+				++i;
+			}
 		}
 	}
 }	

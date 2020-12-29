@@ -3,10 +3,7 @@
 
 class Collidable
 {
-<<<<<<< HEAD
-=======
 public:
->>>>>>> b76f72d6cadc3bf44460268df4724c264e934c84
 	virtual Disk getCollisionHull() const = 0;
 };
 

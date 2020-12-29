@@ -110,3 +110,8 @@ bool Player::isAlive()
 {
 	return life == 0;
 }
+
+int Player::getLife()
+{
+	return this->life;
+}

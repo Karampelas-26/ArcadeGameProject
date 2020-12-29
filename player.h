@@ -18,8 +18,7 @@ class Player : public GameObject , public Collidable
 	float player_y = CANVAS_HEIGHT / 2;
 	bool initializeEnemy = true;
 	
-	
-	
+
 public:
 	Player(const class Game& mygame);
 	void update() override;
@@ -33,4 +32,5 @@ public:
 	void increaseScore();
 	int getScore();
 	bool isAlive();
+	int getLife();
 };

@@ -22,6 +22,8 @@ class Game
 	bool initializeBullet = true;
 	bool initializeEnemyBullet = true;
 	Effects* effect = nullptr;
+	bool ableEffect = false;
+	float timeEffect;
 
 public:
 	void draw();

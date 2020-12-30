@@ -5,7 +5,8 @@
 #include <list>
 #include "enemy.h"
 #include "effects.h"
-
+#include "background.h"
+#include "powerups.h"
 
 
 class Game 
@@ -24,6 +25,12 @@ class Game
 	Effects* effect = nullptr;
 	bool ableEffect = false;
 	float timeEffect;
+	PowerUps* powerUp = nullptr;
+	bool initializePowerUp = true;
+	/*Background* background = nullptr;
+	std::list<Background> bgList;*/
+	void deleteEnemy();
+	bool powerUpActive = false;
 
 public:
 	void draw();

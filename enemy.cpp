@@ -11,7 +11,7 @@ void Enemy::update()
 
 bool Enemy::enemyisActive()
 {
-	return enemy_y < 0;
+	return enemy_y > CANVAS_HEIGHT + 50.0f;
 }
 
 float Enemy::getFireRate()

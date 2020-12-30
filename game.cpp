@@ -21,7 +21,7 @@ void Game::update()
 
 		if (mouse.button_left_released)
 		{
-			bullets.push_back((*new Bullet(*this, player->getPlayer_x(), player->getPlayer_y())));
+			bullets.push_back((*new Bullet(*this, player->getPlayer_x(), player->getPlayer_y(),powerUpActive)));
 		}
 		if (!bullets.empty())
 		{
@@ -46,11 +46,20 @@ void Game::update()
 	if (initializeEnemy && graphics::getGlobalTime() > 2000) {
 		enemy = new Enemy((*this));
 		initializeEnemy = false;
-		
+
 	}
 	if (enemy) {
 		enemy->update();
-
+		if (enemy->enemyisActive()) {
+			if (player && player->getScore() == 10) {
+				powerUp = new PowerUps(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
+				initializePowerUp = false;
+			}
+			delete enemy;
+			initializeEnemy = true;
+			enemy = nullptr;
+			//deleteEnemy();
+		}
 		//enemy bullet
 		if (initializeEnemyBullet) {
 			if (enemy->Foo()) {
@@ -80,12 +89,17 @@ void Game::update()
 	if (player && enemy) {
 		if (checkCollision(player->getCollisionHull(), enemy->getCollisionHull())) {
 			graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.7f, false);
-			effect = new Effects(*this,enemy->getEnemy_x(), enemy->getEnemy_y());
+			effect = new Effects(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
 			ableEffect = true;
 			timeEffect = graphics::getGlobalTime();
+			if (player && player->getScore() == 10) {
+				powerUp = new PowerUps(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
+				initializePowerUp = false;
+			}
 			delete enemy;
 			enemy = nullptr;
 			initializeEnemy = true;
+			//deleteEnemy();
 			if (player->isAlive())
 			{
 				delete player;
@@ -112,9 +126,14 @@ void Game::update()
 				effect = new Effects(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
 				ableEffect = true;
 				timeEffect = graphics::getGlobalTime();
+				if (player && player->getScore() == 10) {
+					powerUp = new PowerUps(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
+					initializePowerUp = false;
+				}
 				delete enemy;
 				enemy = nullptr;
 				initializeEnemy = true;
+				//deleteEnemy();
 				initializeEnemyBullet = true;
 				player->increaseScore();
 				bullets.erase(i++);
@@ -133,8 +152,8 @@ void Game::update()
 			if (player && checkCollision(player->getCollisionHull(), i->getCollisionHull()))
 			{
 				graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.2f, false);
-				
-				if (player->isAlive()) 
+
+				if (player->isAlive())
 				{
 					effect = new Effects(*this, player->getPlayer_x(), player->getPlayer_y());
 					ableEffect = true;
@@ -142,7 +161,7 @@ void Game::update()
 					delete player;
 					player = nullptr;
 					initializePlayer = true;
-					
+
 				}
 				else
 				{
@@ -162,9 +181,9 @@ void Game::update()
 		std::list<Bullet>::iterator j = bullets.begin();
 		std::list<Enemybullet>::iterator i = enemybullets.begin();
 		bool ereaser = false;
-		while (i != enemybullets.end() )  
+		while (i != enemybullets.end())
 		{
-			while (j != bullets.end()) 
+			while (j != bullets.end())
 			{
 				if (checkCollision(j->getCollisionHull(), i->getCollisionHull()))
 				{
@@ -174,7 +193,7 @@ void Game::update()
 					ereaser = true;
 					break;
 				}
-				else 
+				else
 				{
 					++j;
 					ereaser = false;
@@ -190,7 +209,32 @@ void Game::update()
 			}
 		}
 	}
-}	
+	//upadate power up
+	if (powerUp)
+	{
+		//std::cout << "power up is here\n";
+		powerUp->update();
+	
+		if (player)
+		{
+			if (!powerUp->i_am_not_valid_power_up() && checkCollision(player->getCollisionHull(), powerUp->getCollisionHull()))
+			{
+				powerUpActive = true;
+				/*delete powerUp;
+				powerUp = nullptr;
+				initializePowerUp = true;*/
+			}
+		}
+		if (powerUp->i_am_not_valid_power_up())
+		{
+			delete powerUp;
+			powerUp = nullptr;
+			initializePowerUp = true;
+		}
+	}
+	//collision player with power yp
+
+}
 
 
 bool Game::checkCollision(Disk disk1,Disk disk2)
@@ -206,15 +250,51 @@ bool Game::checkCollision(Disk disk1,Disk disk2)
 
 
 
+//void Game::deleteEnemy()
+//{
+//	if (player && player->getScore() == 10) {
+//		powerUp = new PowerUps(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
+//		initializePowerUp = false;
+//	}
+//	delete enemy;
+//	enemy = nullptr;
+//	initializeEnemy = true;
+//}
+
 void Game::draw()
 {
+	float offset = CANVAS_HEIGHT * fmodf(graphics::getGlobalTime() / 1000.0f, 10.0f) / 10.0f;
+
 	graphics::Brush br;
 	br.outline_opacity = 0.0f;
-	br.texture = std::string(ASSETS_PATH) + "water.png";
+	br.texture = std::string(ASSETS_PATH) + "water.png"; 
+
+	graphics::Brush br1;
+	br1.outline_opacity = 1.0f;
+	br1.fill_opacity = 0.5f;
+	br1.texture = std::string(ASSETS_PATH) + "water.png"; 
+
+	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + offset, CANVAS_WIDTH, CANVAS_HEIGHT, br);
+	graphics::drawRect(CANVAS_WIDTH / 2,-CANVAS_HEIGHT / 2 + offset, CANVAS_WIDTH, CANVAS_HEIGHT, br);
+
+	/*if (bgList.empty())
+	{
+		bgList.push_back(*(new Background(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT,br)));
+		bgList.push_back(*(new Background(CANVAS_WIDTH / 2, -CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT,br)));
+	}
+	if (!bgList.empty()) 
+	{
+		std::list<Background>::iterator i = bgList.begin();
+		while (i != bgList.end())
+		{
+			i->draw(offset);
+			++i;
+		}
+	}*/
 	
-	float offset = CANVAS_HEIGHT * fmodf(graphics::getGlobalTime()/100.0f,80.0f)/800.0f;
+	/*if (background)
+		background->draw(offset);*/
 	
-	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + offset, CANVAS_HEIGHT, CANVAS_HEIGHT*2, br);
 	
 	if (player)
 	{
@@ -269,18 +349,26 @@ void Game::draw()
 
 		graphics::drawText(30.0f, 750.0f, 25.0f, life, brush);
 	}
-
-	if (effect) {
-		if (ableEffect && graphics::getGlobalTime() - timeEffect < 250)
-			effect->draw();
-		else
-			ableEffect = false;
+	//effect layer
+	if (effect && ableEffect && graphics::getGlobalTime() - timeEffect < 250) 
+		effect->draw();
+	else if (effect)
+	{
+		ableEffect = false;
+		delete effect;
+		effect = nullptr;
+	}
+	//power up layer
+	if (powerUp || !initializePowerUp)
+	{
+		powerUp->draw();
+		//std::cout << "done\n";
 	}
 }
 
 void Game::init()
 {
-	graphics::playMusic(std::string(ASSETS_PATH) + "music.mp3", 0.05f, true, 4000);
+	//graphics::playMusic(std::string(ASSETS_PATH) + "music.mp3", 0.05f, true, 4000);
 	graphics::setFont(std::string(ASSETS_PATH) + "font.ttf");
 }
 

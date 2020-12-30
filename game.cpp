@@ -51,14 +51,7 @@ void Game::update()
 	if (enemy) {
 		enemy->update();
 		if (enemy->enemyisActive()) {
-			if (player && player->getScore() == 10) {
-				powerUp = new PowerUps(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
-				initializePowerUp = false;
-			}
-			delete enemy;
-			initializeEnemy = true;
-			enemy = nullptr;
-			//deleteEnemy();
+			deleteEnemy();
 		}
 		//enemy bullet
 		if (initializeEnemyBullet) {
@@ -92,14 +85,7 @@ void Game::update()
 			effect = new Effects(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
 			ableEffect = true;
 			timeEffect = graphics::getGlobalTime();
-			if (player && player->getScore() == 10) {
-				powerUp = new PowerUps(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
-				initializePowerUp = false;
-			}
-			delete enemy;
-			enemy = nullptr;
-			initializeEnemy = true;
-			//deleteEnemy();
+			deleteEnemy();
 			if (player->isAlive())
 			{
 				delete player;
@@ -126,14 +112,7 @@ void Game::update()
 				effect = new Effects(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
 				ableEffect = true;
 				timeEffect = graphics::getGlobalTime();
-				if (player && player->getScore() == 10) {
-					powerUp = new PowerUps(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
-					initializePowerUp = false;
-				}
-				delete enemy;
-				enemy = nullptr;
-				initializeEnemy = true;
-				//deleteEnemy();
+				deleteEnemy();
 				initializeEnemyBullet = true;
 				player->increaseScore();
 				bullets.erase(i++);
@@ -250,16 +229,16 @@ bool Game::checkCollision(Disk disk1,Disk disk2)
 
 
 
-//void Game::deleteEnemy()
-//{
-//	if (player && player->getScore() == 10) {
-//		powerUp = new PowerUps(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
-//		initializePowerUp = false;
-//	}
-//	delete enemy;
-//	enemy = nullptr;
-//	initializeEnemy = true;
-//}
+void Game::deleteEnemy()
+{
+	if (player && player->getScore() == 10) {
+		powerUp = new PowerUps(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
+		initializePowerUp = false;
+	}
+	delete enemy;
+	enemy = nullptr;
+	initializeEnemy = true;
+}
 
 void Game::draw()
 {

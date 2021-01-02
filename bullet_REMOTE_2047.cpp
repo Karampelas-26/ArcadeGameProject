@@ -13,11 +13,7 @@ void Bullet::draw()
 		graphics::Brush br;
 		br.texture = std::string(ASSETS_PATH) + "bullet.png";
 		br.outline_opacity = 0.0f;
-<<<<<<< HEAD
-		graphics::drawRect(bullet_start_x, bullet_start_y , 20, 25, br);
-=======
 		graphics::drawRect(bullet_start_x, bullet_start_y - 15, 20, 25, br);
->>>>>>> development
 
 		//draw disk of collision
 		graphics::Brush brush;
@@ -32,11 +28,7 @@ void Bullet::draw()
 		graphics::Brush br1;
 		br1.texture = std::string(ASSETS_PATH) + "bullet.png";
 		br1.outline_opacity = 0.0f;
-<<<<<<< HEAD
-		graphics::drawRect(bullet_start_x-5, bullet_start_y , 20, 25, br1);
-=======
 		graphics::drawRect(bullet_start_x-5, bullet_start_y - 15, 20, 25, br1);
->>>>>>> development
 
 		//draw disk of collision
 		graphics::Brush brush;
@@ -49,11 +41,7 @@ void Bullet::draw()
 		graphics::Brush br;
 		br.texture = std::string(ASSETS_PATH) + "bullet.png";
 		br.outline_opacity = 0.0f;
-<<<<<<< HEAD
-		graphics::drawRect(bullet_start_x+5, bullet_start_y , 20, 25, br);
-=======
 		graphics::drawRect(bullet_start_x+5, bullet_start_y - 15, 20, 25, br);
->>>>>>> development
 
 		//draw disk of collision
 		/*graphics::Brush brush;

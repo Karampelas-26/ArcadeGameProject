@@ -199,10 +199,17 @@ void Game::update()
 			if (!powerUp->i_am_not_valid_power_up() && checkCollision(player->getCollisionHull(), powerUp->getCollisionHull()))
 			{
 				powerUpActive = true;
-				delete powerUp;
+				/*delete powerUp;
 				powerUp = nullptr;
-				initializePowerUp = true;
+				initializePowerUp = true;*/
 			}
+		}
+		if (powerUp->i_am_not_valid_power_up())
+		{
+			delete powerUp;
+			powerUp = nullptr;
+			initializePowerUp = true;
+		}
 
 			//if (powerUp->extraPowerUp() && checkCollision(player->getCollisionHull(), powerUp->getCollisionHull())) {
 			//	powerUpActive = true;
@@ -211,7 +218,7 @@ void Game::update()
 			//	initializePowerUp = true;
 		//	}
 
-		}
+	}
 		//if (powerUp->i_am_not_valid_power_up())
 		//{
 			//delete powerUp;

@@ -1,5 +1,8 @@
 #include "powerups.h"
+<<<<<<< HEAD
 #include "player.h"
+=======
+>>>>>>> development
 
 void PowerUps::draw()
 {
@@ -9,6 +12,7 @@ void PowerUps::draw()
 	br.fill_color[2] = 0.3f;
 
 	graphics::drawDisk(position_x, position_y, 20.0f, br);
+<<<<<<< HEAD
 	
 	//if (extraPowerUp()) {
 		//graphics::Brush br1;
@@ -18,6 +22,8 @@ void PowerUps::draw()
 
 	//	graphics::drawDisk(position_x, position_y, 20.0f, br1);
 	//}
+=======
+>>>>>>> development
 }
 
 void PowerUps::update()
@@ -43,6 +49,7 @@ PowerUps::~PowerUps()
 
 bool PowerUps::i_am_not_valid_power_up()
 {
+<<<<<<< HEAD
 	return position_y > CANVAS_HEIGHT + 50.0f; // || graphics::getGlobalTime() - timer < 2000.0f;
 }
 
@@ -52,6 +59,11 @@ bool PowerUps::i_am_not_valid_power_up()
 //	return Player::getScore() >= 200;
 //}
 
+=======
+	return position_y > CANVAS_HEIGHT + 50.0f;// || graphics::getGlobalTime() - timer < 2000.0f;
+}
+
+>>>>>>> development
 Disk PowerUps::getCollisionHull() const
 {
 	Disk disk;

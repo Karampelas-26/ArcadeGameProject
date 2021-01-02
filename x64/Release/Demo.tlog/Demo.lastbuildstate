@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.28.29333:TargetPlatformVersion=10.0.18362.0:
 Release|x64|C:\Users\User\Desktop\arcade game\ArcadeGameProject-development\|
+=======
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v142:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0
+Release|x64|C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject-development\ArcadeGameProject-development\|
+>>>>>>> development

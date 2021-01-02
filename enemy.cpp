@@ -6,7 +6,11 @@
 
 void Enemy::update()
 {
+<<<<<<< HEAD
 		enemy_y += 2 *speed * graphics::getDeltaTime() / 1000.0f;	
+=======
+		enemy_y += speed * graphics::getDeltaTime() / 1000.0f;	
+>>>>>>> development
 }
 
 bool Enemy::enemyisActive()

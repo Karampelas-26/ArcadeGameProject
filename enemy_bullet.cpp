@@ -19,7 +19,11 @@ void Enemybullet::draw()
 
 void Enemybullet::update()
 {
+<<<<<<< HEAD
 	enemy_bullet_start_y += 2 *speed * graphics::getDeltaTime() / 100.0f;
+=======
+	enemy_bullet_start_y += speed * graphics::getDeltaTime() / 100.0f;
+>>>>>>> development
 
 }
 

@@ -31,7 +31,7 @@ class Game
 	std::list<Background> bgList;*/
 	void deleteEnemy();
 	bool powerUpActive = false;
-
+	
 public:
 	void draw();
 	void update();

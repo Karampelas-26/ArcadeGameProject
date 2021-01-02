@@ -43,7 +43,6 @@ PowerUps::~PowerUps()
 
 bool PowerUps::i_am_not_valid_power_up()
 {
-<<<<<<< HEAD
 	return position_y > CANVAS_HEIGHT + 50.0f; // || graphics::getGlobalTime() - timer < 2000.0f;
 }
 
@@ -53,11 +52,6 @@ bool PowerUps::i_am_not_valid_power_up()
 //	return Player::getScore() >= 200;
 //}
 
-=======
-	return position_y > CANVAS_HEIGHT + 50.0f;// || graphics::getGlobalTime() - timer < 2000.0f;
-}
-
->>>>>>> development
 Disk PowerUps::getCollisionHull() const
 {
 	Disk disk;

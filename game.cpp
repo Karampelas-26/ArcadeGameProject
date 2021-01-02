@@ -41,7 +41,15 @@ void Game::update()
 			}
 		}
 	}
+}
 
+void Game::draw()
+{
+	//float offset = CANVAS_HEIGHT * sinf(graphics::getDeltaTime() / 1000.0f) / 4;
+	graphics::Brush br;
+	br.outline_opacity = 0.0f;
+	br.texture = std::string(ASSETS_PATH) + "water.png";
+	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT /2 , CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
 	if (initializeEnemy && graphics::getGlobalTime() > 2000) {
 		enemy = new Enemy((*this));
@@ -288,8 +296,6 @@ void Game::draw()
 	
 	/*if (background)
 		background->draw(offset);*/
-	
-	
 	if (player)
 	{
 		player->draw();
@@ -302,7 +308,6 @@ void Game::draw()
 			}
 		}
 	}
-
 	if (enemy) 
 	{
 		enemy->draw();
@@ -385,5 +390,4 @@ Game::~Game()
 	player = nullptr;
 	delete enemy;
 	enemy = nullptr;
-	//enemy->~Enemy();
 }

@@ -7,11 +7,7 @@
 
 class Enemy : public GameObject , public Collidable
 {
-<<<<<<< HEAD
 	float speed = 22.0f;
-=======
-	float speed = 17.0;
->>>>>>> development
 	float enemy_x;
 	float enemy_y = 0.0f;
 	float fireRate;

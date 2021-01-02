@@ -1,8 +1,5 @@
 #include "powerups.h"
-<<<<<<< HEAD
 #include "player.h"
-=======
->>>>>>> development
 
 void PowerUps::draw()
 {
@@ -12,7 +9,6 @@ void PowerUps::draw()
 	br.fill_color[2] = 0.3f;
 
 	graphics::drawDisk(position_x, position_y, 20.0f, br);
-<<<<<<< HEAD
 	
 	//if (extraPowerUp()) {
 		//graphics::Brush br1;
@@ -22,8 +18,6 @@ void PowerUps::draw()
 
 	//	graphics::drawDisk(position_x, position_y, 20.0f, br1);
 	//}
-=======
->>>>>>> development
 }
 
 void PowerUps::update()

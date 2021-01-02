@@ -225,8 +225,6 @@ void Game::update()
 			///powerUp = nullptr;
 			//initializePowerUp = true;
 		//}
-	}
-	//collision player with power yp
 
 }
 

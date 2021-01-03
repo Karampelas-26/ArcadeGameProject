@@ -17,11 +17,7 @@ class Player : public GameObject , public Collidable
 	int score = 0;
 	float speed = 5.0f;
 	float player_x = CANVAS_WIDTH / 2;
-	float player_y = CANVAS_HEIGHT / 2;
-	bool initializeEnemy = true;
-	std::list<Bullet> bullets;
-	bool initializeEnemy = true;
-	Enemy* enemy = nullptr;	
+	float player_y = CANVAS_HEIGHT / 2;	
 
 public:
 	Player(const class Game& mygame);

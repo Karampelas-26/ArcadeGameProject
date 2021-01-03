@@ -70,17 +70,8 @@ void Game::updateLevelScreen()
 			}
 		}
 	}
-}
-
-void Game::draw()
-{
-	//float offset = CANVAS_HEIGHT * sinf(graphics::getDeltaTime() / 1000.0f) / 4;
-	graphics::Brush br;
-	br.outline_opacity = 0.0f;
-	br.texture = std::string(ASSETS_PATH) + "water.png";
-	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT /2 , CANVAS_WIDTH, CANVAS_HEIGHT, br);
-
-	if (initializeEnemy && graphics::getGlobalTime() > 2000) {
+	
+	if (initializeEnemy) {
 		enemy = new Enemy((*this));
 		initializeEnemy = false;
 
@@ -304,26 +295,6 @@ void Game::drawLevelScreen()
 	graphics::drawRect(CANVAS_WIDTH / 2, -CANVAS_HEIGHT / 2 + offset, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
 
-<<<<<<< HEAD
-=======
-	/*if (bgList.empty())
-	{
-		bgList.push_back(*(new Background(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT,br)));
-		bgList.push_back(*(new Background(CANVAS_WIDTH / 2, -CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT,br)));
-	}
-	if (!bgList.empty()) 
-	{
-		std::list<Background>::iterator i = bgList.begin();
-		while (i != bgList.end())
-		{
-			i->draw(offset);
-			++i;
-		}
-	}*/
-	
-	/*if (background)
-		background->draw(offset);*/
->>>>>>> d9df9bcefec80105228c248bbf09f84d2d3d0fed
 	if (player)
 	{
 		player->draw();
@@ -336,12 +307,8 @@ void Game::drawLevelScreen()
 			}
 		}
 	}
-<<<<<<< HEAD
 
 	if (enemy)
-=======
-	if (enemy) 
->>>>>>> d9df9bcefec80105228c248bbf09f84d2d3d0fed
 	{
 		enemy->draw();
 	}
@@ -466,11 +433,8 @@ Game::~Game()
 	player = nullptr;
 	delete enemy;
 	enemy = nullptr;
-<<<<<<< HEAD
 	delete powerUp;
 	powerUp = nullptr;
 	delete effect;
 	effect = nullptr;
-=======
->>>>>>> d9df9bcefec80105228c248bbf09f84d2d3d0fed
 }

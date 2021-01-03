@@ -38,10 +38,6 @@ class Game
 	void deleteEnemy();
 	bool powerUpActive = false;
 	
-<<<<<<< HEAD
-
-=======
->>>>>>> d9df9bcefec80105228c248bbf09f84d2d3d0fed
 public:
 	void draw();
 	void update();

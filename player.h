@@ -4,6 +4,8 @@
 #include "gameobject.h"
 #include "bullet.h"
 #include <list>
+#include "enemy.h"
+
 
 
 
@@ -17,7 +19,9 @@ class Player : public GameObject , public Collidable
 	float player_x = CANVAS_WIDTH / 2;
 	float player_y = CANVAS_HEIGHT / 2;
 	bool initializeEnemy = true;
-	
+	std::list<Bullet> bullets;
+	bool initializeEnemy = true;
+	Enemy* enemy = nullptr;	
 
 public:
 	Player(const class Game& mygame);

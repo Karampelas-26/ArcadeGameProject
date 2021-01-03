@@ -35,6 +35,14 @@ bool PowerUps::i_am_not_valid_power_up()
 	return position_y > CANVAS_HEIGHT + 50.0f; // || graphics::getGlobalTime() - timer < 2000.0f;
 }
 
+<<<<<<< HEAD
+=======
+//bool PowerUps::extraPowerUp()
+//{//
+	
+//	return Player::getScore() >= 200;
+//}
+>>>>>>> d9df9bcefec80105228c248bbf09f84d2d3d0fed
 
 Disk PowerUps::getCollisionHull() const
 {

@@ -29,6 +29,5 @@ int main() {
     graphics::setCanvasScaleMode(graphics::CANVAS_SCALE_FIT);
     game.init();
     graphics::startMessageLoop();
-    game.~Game();
 	return 0;
 }

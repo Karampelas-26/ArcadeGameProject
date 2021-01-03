@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
+<<<<<<< HEAD
+<<<<<<< HEAD
+  <ProjectOutputs>C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\Demo\x64\Debug\Demod.exe</ProjectOutputs>
+=======
+  <ProjectOutputs>C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\ArcadeGameProject\ArcadeGameProject\x64\Debug\Demod.exe</ProjectOutputs>
+>>>>>>> remotes/origin/development
+  <ContentFiles></ContentFiles>
+  <SatelliteDlls></SatelliteDlls>
+  <NonRecipeFileRefs></NonRecipeFileRefs>
+=======
   <ProjectOutputs>
     <ProjectOutput>
       <FullPath>C:\Users\User\Desktop\arcade game\ArcadeGameProject-development\x64\Debug\Demod.exe</FullPath>
@@ -8,4 +18,5 @@
   <ContentFiles />
   <SatelliteDlls />
   <NonRecipeFileRefs />
+>>>>>>> remotes/origin/development
 </Project>

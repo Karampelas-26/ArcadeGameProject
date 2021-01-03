@@ -152,6 +152,7 @@
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemy_bullet.cpp" />
     <ClCompile Include="enemy_bullet.h" />
+
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="config.h" />
     <ClInclude Include="effects.h" />
     <ClInclude Include="enemy.h" />
+
     <ClInclude Include="game.h" />
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="player.h" />

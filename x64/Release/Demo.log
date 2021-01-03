@@ -1,12 +1,26 @@
 <<<<<<< HEAD
+﻿  game.cpp
+C:\Users\User\Desktop\arcade game\ArcadeGameProject-development\game.cpp(238,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\arcade game\ArcadeGameProject-development\game.cpp(239,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
 ﻿  powerups.cpp
+>>>>>>> d9df9bcefec80105228c248bbf09f84d2d3d0fed
 x64\Release\enemy_bullet.obj : warning LNK4042: object specified more than once; extras ignored
   Generating code
-  4 of 344 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+  1 of 344 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    3 functions had inline decision re-evaluated but remain unchanged
+    4 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Demo.vcxproj -> C:\Users\User\Desktop\arcade game\ArcadeGameProject-development\x64\Release\Demo.exe
+<<<<<<< HEAD
+=======
+=======
+﻿  Main.cpp
+sgg.lib(SDL_windows_main.obj) : error LNK2001: unresolved external symbol SDL_main
+C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\Demo\x64\Release\Demo.exe : fatal error LNK1120: 1 unresolved externals
+>>>>>>> main
 =======
 ﻿  bullet.cpp
   enemy.cpp
@@ -18,4 +32,9 @@ x64\Release\enemy_bullet.obj : warning LNK4042: object specified more than once;
   All 234 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   Demo.vcxproj -> C:\Users\SOTIRIS\Desktop\AUEB\Προγραμματισμός Υπολογιστών με C++\ArcadeGame\ArcadeGameProject-development\ArcadeGameProject-development\x64\Release\Demo.exe
+<<<<<<< HEAD
 >>>>>>> development
+=======
+>>>>>>> remotes/origin/development
+>>>>>>> main
+>>>>>>> d9df9bcefec80105228c248bbf09f84d2d3d0fed

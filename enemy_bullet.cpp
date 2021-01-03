@@ -2,19 +2,13 @@
 
 void Enemybullet::draw()
 {
-
 	graphics::Brush br;
-	br.texture = std::string(ASSETS_PATH) + "enemy_bullet.png";
+	br.texture = std::string(ASSETS_PATH) + "bullet.png";
+	graphics::setOrientation(180.0f);
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(enemy_bullet_start_x, enemy_bullet_start_y, 20, 25, br);
-
-	//draw disk of collision
-	graphics::Brush brush;
-	brush.fill_color[0] = 0.3f;
-	brush.fill_color[1] = 0.3f;
-	brush.fill_color[2] = 1.0f;
-	brush.fill_opacity = 0.5f;
-	graphics::drawDisk(enemy_bullet_start_x, enemy_bullet_start_y, 10.0f, brush);
+	graphics::resetPose();
+	
 }
 
 void Enemybullet::update()

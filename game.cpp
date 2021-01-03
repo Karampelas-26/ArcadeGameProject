@@ -7,6 +7,35 @@
 
 void Game::update()
 {
+	if (status == STATUS_START) {
+
+		updateStartScreen();
+	}
+	else if (status == STATUS_PLAYING)
+	{
+		updateLevelScreen();
+	}
+	else if (status == STATUS_END)
+	{
+		updateEndScreen();
+	}
+	
+}
+
+
+
+
+void Game::updateStartScreen()
+{
+	if (graphics::getKeyState(graphics::SCANCODE_RETURN))
+	{
+		status = STATUS_PLAYING;
+	}
+}
+
+void Game::updateLevelScreen()
+{
+
 	graphics::MouseState mouse;
 	graphics::getMouseState(mouse);
 
@@ -21,7 +50,7 @@ void Game::update()
 
 		if (mouse.button_left_released)
 		{
-			bullets.push_back((*new Bullet(*this, player->getPlayer_x(), player->getPlayer_y(),powerUpActive)));
+			bullets.push_back((*new Bullet(*this, player->getPlayer_x(), player->getPlayer_y(), powerUpActive)));
 		}
 		if (!bullets.empty())
 		{
@@ -90,7 +119,7 @@ void Game::update()
 			{
 				delete player;
 				player = nullptr;
-				initializePlayer = true;
+				status = STATUS_END;
 
 			}
 			else
@@ -139,7 +168,7 @@ void Game::update()
 					timeEffect = graphics::getGlobalTime();
 					delete player;
 					player = nullptr;
-					initializePlayer = true;
+					status = STATUS_END;
 
 				}
 				else
@@ -193,41 +222,160 @@ void Game::update()
 	{
 		//std::cout << "power up is here\n";
 		powerUp->update();
-	
+
 		if (player)
 		{
 			if (!powerUp->i_am_not_valid_power_up() && checkCollision(player->getCollisionHull(), powerUp->getCollisionHull()))
 			{
 				powerUpActive = true;
-				/*delete powerUp;
+				delete powerUp;
 				powerUp = nullptr;
-				initializePowerUp = true;*/
+				initializePowerUp = true;
+			}
+
+
+		}
+
+	}
+
+}
+
+void Game::updateEndScreen()
+{
+	if (graphics::getKeyState(graphics::SCANCODE_RETURN))
+	{
+		status = STATUS_PLAYING;
+
+	}
+	else if (graphics::getKeyState(graphics::SCANCODE_ESCAPE))
+	{
+		exit(0);
+	}
+	if (!initializePlayer)
+	{
+		initializePlayer = true;
+	}
+	if (powerUpActive)
+	{
+		
+		powerUpActive = false;
+		
+	}
+	if (powerUp)
+	{
+		delete powerUp;
+		powerUp = nullptr;
+		initializePowerUp = true;
+	}
+}
+
+void Game::drawStartScreen()
+{
+	graphics::Brush br;
+	br.fill_color[0] = 1.0f;
+	char start_info[60];
+	sprintf_s(start_info, "Press enter to start");
+	graphics::drawText(70.0f, CANVAS_HEIGHT/2, 25.0f,start_info, br);
+}
+
+void Game::drawLevelScreen()
+{
+
+	float offset = CANVAS_HEIGHT * fmodf(graphics::getGlobalTime() / 1000.0f, 10.0f) / 10.0f;
+
+	graphics::Brush br;
+	br.outline_opacity = 0.0f;
+	br.texture = std::string(ASSETS_PATH) + "water.png";
+
+	graphics::Brush br1;
+	br1.outline_opacity = 1.0f;
+	br1.fill_opacity = 0.5f;
+	br1.texture = std::string(ASSETS_PATH) + "water.png";
+
+	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + offset, CANVAS_WIDTH, CANVAS_HEIGHT, br);
+	graphics::drawRect(CANVAS_WIDTH / 2, -CANVAS_HEIGHT / 2 + offset, CANVAS_WIDTH, CANVAS_HEIGHT, br);
+
+
+	if (player)
+	{
+		player->draw();
+
+		if (!bullets.empty())
+		{
+			for (std::list<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it)
+			{
+				it->draw();
 			}
 		}
-		if (powerUp->i_am_not_valid_power_up())
+	}
+
+	if (enemy)
+	{
+		enemy->draw();
+	}
+	//enemy bullet
+	if (!enemybullets.empty())
+	{
+		std::list<Enemybullet>::iterator i = enemybullets.begin();
+		while (i != enemybullets.end())
 		{
-			delete powerUp;
-			powerUp = nullptr;
-			initializePowerUp = true;
+			if (i->im_a_valid_bullet())
+			{
+				enemybullets.erase(i++);
+			}
+			else
+			{
+				i->draw();
+				++i;
+			}
 		}
+	}
 
-			//if (powerUp->extraPowerUp() && checkCollision(player->getCollisionHull(), powerUp->getCollisionHull())) {
-			//	powerUpActive = true;
-			//	delete powerUp;
-			//	powerUp = nullptr;
-			//	initializePowerUp = true;
-		//	}
+	if (player) {
+		//draw life points
+		char score_info[40];
+		sprintf_s(score_info, "Score: %d", player->getScore());
+
+
+		graphics::Brush brush;
+		brush.fill_color[0] = 1.0f;
+		brush.fill_color[1] = 0.2f;
+		brush.fill_color[2] = 0.2f;
+
+		graphics::drawText(250.0f, 750.0f, 25.0f, score_info, brush);
+		//draw life
+		char life_info[40];
+		sprintf_s(life_info, "Life points: %d", player->getLife());
+
+		graphics::drawText(30.0f, 750.0f, 25.0f, life_info, brush);
+	}
+	//effect layer
+	if (effect && ableEffect && graphics::getGlobalTime() - timeEffect < 250)
+		effect->draw();
+	else if (effect)
+	{
+		ableEffect = false;
+		delete effect;
+		effect = nullptr;
+	}
+	//power up layer
+	if (powerUp || !initializePowerUp)
+	{
+		powerUp->draw();
 
 	}
-		//if (powerUp->i_am_not_valid_power_up())
-		//{
-			//delete powerUp;
-			///powerUp = nullptr;
-			//initializePowerUp = true;
-		//}
-	}
-	//collision player with power yp
+}
 
+void Game::drawEndScreen()
+{
+	graphics::Brush br;
+	br.fill_color[0] = 1.0f;
+	char end_info1[60];
+	sprintf_s(end_info1, "Press Enter to play again ");
+	graphics::drawText(10.0f, CANVAS_HEIGHT / 2, 25.0f, end_info1, br); 
+	char end_info2[60];
+	sprintf_s(end_info2, "Or Esc to exit the game");
+	graphics::drawText(20.0f, CANVAS_HEIGHT / 2 + 27.5f , 25.0f, end_info2, br);
 }
 
 
@@ -257,115 +405,16 @@ void Game::deleteEnemy()
 
 void Game::draw()
 {
-	float offset = CANVAS_HEIGHT * fmodf(graphics::getGlobalTime() / 1000.0f, 10.0f) / 10.0f;
+	if (status == STATUS_START) {
 
-	graphics::Brush br;
-	br.outline_opacity = 0.0f;
-	br.texture = std::string(ASSETS_PATH) + "water.png"; 
-
-	graphics::Brush br1;
-	br1.outline_opacity = 1.0f;
-	br1.fill_opacity = 0.5f;
-	br1.texture = std::string(ASSETS_PATH) + "water.png"; 
-
-	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + offset, CANVAS_WIDTH, CANVAS_HEIGHT, br);
-	graphics::drawRect(CANVAS_WIDTH / 2,-CANVAS_HEIGHT / 2 + offset, CANVAS_WIDTH, CANVAS_HEIGHT, br);
-
-	/*if (bgList.empty())
-	{
-		bgList.push_back(*(new Background(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT,br)));
-		bgList.push_back(*(new Background(CANVAS_WIDTH / 2, -CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT,br)));
+		drawStartScreen();
 	}
-	if (!bgList.empty()) 
+	else if (status == STATUS_PLAYING)
 	{
-		std::list<Background>::iterator i = bgList.begin();
-		while (i != bgList.end())
-		{
-			i->draw(offset);
-			++i;
-		}
-	}*/
-	
-	/*if (background)
-		background->draw(offset);*/
-	
-	
-	if (player)
-	{
-		player->draw();
-
-		if (!bullets.empty())
-		{
-			for (std::list<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it)
-			{
-				it->draw();
-			}
-		}
+		drawLevelScreen();
 	}
-
-	if (enemy) 
-	{
-		enemy->draw();
-	}
-	//enemy bullet
-	if (!enemybullets.empty())
-	{
-		std::list<Enemybullet>::iterator i = enemybullets.begin();
-		while (i != enemybullets.end())
-		{
-			if (i->im_a_valid_bullet())
-			{
-				enemybullets.erase(i++);
-			}
-			else
-			{
-				i->draw();
-				++i;
-			}
-		}
-	}
-	
-	if (player) {
-		//draw life points
-		char str[40];
-		sprintf_s(str, "Score: %d", player->getScore());
-		
-
-		graphics::Brush brush;
-		brush.fill_color[0] = 1.0f;
-		brush.fill_color[1] = 0.2f;
-		brush.fill_color[2] = 0.2f;
-
-		graphics::drawText(250.0f, 750.0f, 25.0f, str, brush);
-		//draw life
-		char life[40];
-		sprintf_s(life, "Life points: %d", player->getLife());
-
-		graphics::drawText(30.0f, 750.0f, 25.0f, life, brush);
-	}
-	//effect layer
-	if (effect && ableEffect && graphics::getGlobalTime() - timeEffect < 250) 
-		effect->draw();
-	else if (effect)
-	{
-		ableEffect = false;
-		delete effect;
-		effect = nullptr;
-	}
-	//power up layer
-	if (powerUp || !initializePowerUp  )
-	{
-		powerUp->draw();
-
-		//std::cout << "done\n";
-
-		//if (powerUp->extraPowerUp() )
-		//{
-
-
-		//	powerUp->draw();
-		//}
-	}
+	else
+		drawEndScreen();
 }
 
 
@@ -385,5 +434,8 @@ Game::~Game()
 	player = nullptr;
 	delete enemy;
 	enemy = nullptr;
-	//enemy->~Enemy();
+	delete powerUp;
+	powerUp = nullptr;
+	delete effect;
+	effect = nullptr;
 }

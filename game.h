@@ -12,6 +12,14 @@
 class Game 
 {
 	
+	typedef enum {STATUS_START, STATUS_PLAYING, STATUS_END} status_t;
+	status_t status;
+	void updateStartScreen();
+	void updateLevelScreen();
+	void updateEndScreen();
+	void drawStartScreen();
+	void drawLevelScreen();
+	void drawEndScreen();
 	float speed = 10.f;
 	Player* player = nullptr;
 	Enemy* enemy = nullptr;
@@ -27,10 +35,9 @@ class Game
 	float timeEffect;
 	PowerUps* powerUp = nullptr;
 	bool initializePowerUp = true;
-	/*Background* background = nullptr;
-	std::list<Background> bgList;*/
 	void deleteEnemy();
 	bool powerUpActive = false;
+	
 
 public:
 	void draw();

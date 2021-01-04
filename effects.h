@@ -4,6 +4,7 @@
 class Effects : public GameObject
 {
 	float cordinates_x, cordinates_y;
+
 public:
 	void draw() override;
 	void update() override;

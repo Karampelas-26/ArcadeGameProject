@@ -21,19 +21,10 @@ float Enemy::getFireRate()
 
 void Enemy::draw()
 {
-		graphics::Brush br;
-		br.texture = std::string(ASSETS_PATH) + "enemy.png";
-		br.outline_opacity = 0.0f;
-		graphics::drawRect(enemy_x, enemy_y, 50, 60, br);
-
-		//draw disk of collision
-		graphics::Brush brush;
-		brush.fill_color[0] = 1.0f;
-		brush.fill_color[1] = 0.3f;
-		brush.fill_color[2] = 0.3f;
-		brush.fill_opacity = 0.5f;
-		graphics::drawDisk(enemy_x, enemy_y, 30.0f, brush);
-	
+	graphics::Brush br;
+	br.texture = std::string(ASSETS_PATH) + "enemy.png";
+	br.outline_opacity = 0.0f;
+	graphics::drawRect(enemy_x, enemy_y, 50, 60, br);
 }
 
 void Enemy::init()
@@ -58,7 +49,8 @@ Enemy::Enemy(const  Game& mygame)
 	timer = graphics::getGlobalTime();
 }
 
-bool Enemy::Foo() 
+//checking if the time of enemy object is greater than 2sec 
+bool Enemy::enableEnemy() 
 {
 	return graphics::getGlobalTime() - timer > 2000;
 }

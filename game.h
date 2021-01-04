@@ -5,7 +5,6 @@
 #include <list>
 #include "enemy.h"
 #include "effects.h"
-#include "background.h"
 #include "powerups.h"
 
 

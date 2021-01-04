@@ -36,16 +36,10 @@
     <ClCompile Include="enemy_bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="utils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gameobject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="effects.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="background.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="powerups.cpp">
@@ -68,7 +62,6 @@
     <ClInclude Include="bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-
     <ClInclude Include="enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -76,9 +69,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="effects.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="background.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="powerups.h">

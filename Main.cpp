@@ -23,7 +23,6 @@ int main() {
     graphics::setUserData(&game);
     graphics::setDrawFunction(draw);
     graphics::setUpdateFunction(update);
-    //graphics::setFullScreen(true);
 
     graphics::setCanvasSize(CANVAS_WIDTH,CANVAS_HEIGHT);
     graphics::setCanvasScaleMode(graphics::CANVAS_SCALE_FIT);

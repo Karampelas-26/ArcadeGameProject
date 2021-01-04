@@ -7,7 +7,8 @@
 
 void Game::update()
 {
-	if (status == STATUS_START) {
+	if (status == STATUS_START)
+	{
 
 		updateStartScreen();
 	}
@@ -19,7 +20,6 @@ void Game::update()
 	{
 		updateEndScreen();
 	}
-	
 }
 
 
@@ -35,10 +35,10 @@ void Game::updateStartScreen()
 
 void Game::updateLevelScreen()
 {
-
 	graphics::MouseState mouse;
 	graphics::getMouseState(mouse);
 
+	//initialize player if not exist
 	if (initializePlayer)
 	{
 		player = new Player(*this);
@@ -48,10 +48,13 @@ void Game::updateLevelScreen()
 	{
 		player->update();
 
+		//adding a bullet on list with click of mouse
 		if (mouse.button_left_released)
 		{
 			bullets.push_back((*new Bullet(*this, player->getPlayer_x(), player->getPlayer_y(), powerUpActive)));
 		}
+
+		//update bullet or remove it if is not valid
 		if (!bullets.empty())
 		{
 			std::list<Bullet>::iterator i = bullets.begin();
@@ -60,7 +63,7 @@ void Game::updateLevelScreen()
 
 				if (i->im_a_valid_bullet())
 				{
-					bullets.erase(i++);  // alternatively, i = items.erase(i);
+					bullets.erase(i++);
 				}
 				else
 				{
@@ -71,23 +74,34 @@ void Game::updateLevelScreen()
 		}
 	}
 	
-	if (initializeEnemy) {
+	//initialiaze enemy if not exist
+	if (initializeEnemy) 
+	{
 		enemy = new Enemy((*this));
 		initializeEnemy = false;
-
 	}
-	if (enemy) {
+
+	//if enemy exist shoot once and add bullet on list
+	if (enemy)
+	{
 		enemy->update();
-		if (enemy->enemyisActive()) {
+		if (enemy->enemyisActive()) 
+		{
 			deleteEnemy();
 		}
-		//enemy bullet
-		if (initializeEnemyBullet) {
-			if (enemy->Foo()) {
+
+		//initialize enemy bullte if not exist
+		if (initializeEnemyBullet) 
+		{
+			//check if enemy time initialize is able to shoot
+			if (enemy->enableEnemy())
+			{
 				enemybullets.push_back((*new Enemybullet(*this, enemy->getEnemy_x(), enemy->getEnemy_y())));
 				initializeEnemyBullet = false;
 			}
 		}
+
+		//update the situation of bullet or remove it if is not valid
 		if (!enemybullets.empty())
 		{
 			std::list<Enemybullet>::iterator i = enemybullets.begin();
@@ -96,7 +110,7 @@ void Game::updateLevelScreen()
 
 				if (i->im_a_valid_bullet())
 				{
-					enemybullets.erase(i++);  // alternatively, i = items.erase(i);
+					enemybullets.erase(i++);  
 				}
 				else
 				{
@@ -106,20 +120,24 @@ void Game::updateLevelScreen()
 			}
 		}
 	}
+
 	//check collisions enemy with player
-	if (player && enemy) {
-		if (checkCollision(player->getCollisionHull(), enemy->getCollisionHull())) {
+	if (player && enemy) 
+	{
+		if (checkCollision(player->getCollisionHull(), enemy->getCollisionHull())) 
+		{
 			graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.7f, false);
 			effect = new Effects(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
 			ableEffect = true;
 			timeEffect = graphics::getGlobalTime();
 			deleteEnemy();
+
+			//if player has no life delete him and update screen else decrease life 
 			if (player->isAlive())
 			{
 				delete player;
 				player = nullptr;
 				status = STATUS_END;
-
 			}
 			else
 			{
@@ -128,12 +146,13 @@ void Game::updateLevelScreen()
 			}
 		}
 	}
+
 	//check collision each bullet with enemy
-	if (enemy && !bullets.empty()) {
+	if (enemy && !bullets.empty()) 
+	{
 		std::list<Bullet>::iterator i = bullets.begin();
 		while (i != bullets.end())
 		{
-
 			if (enemy && checkCollision(enemy->getCollisionHull(), i->getCollisionHull()))
 			{
 				graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.2f, false);
@@ -150,12 +169,12 @@ void Game::updateLevelScreen()
 			}
 		}
 	}
+
 	//check enemy bullet collision wit player
 	if (player && !enemybullets.empty()) {
 		std::list<Enemybullet>::iterator i = enemybullets.begin();
 		while (i != enemybullets.end())
 		{
-
 			if (player && checkCollision(player->getCollisionHull(), i->getCollisionHull()))
 			{
 				graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.2f, false);
@@ -174,7 +193,7 @@ void Game::updateLevelScreen()
 				{
 					player->decreaseLife();
 				}
-				enemybullets.erase(i++);  // alternatively, i = items.erase(i);
+				enemybullets.erase(i++); 
 			}
 			else
 			{
@@ -196,7 +215,6 @@ void Game::updateLevelScreen()
 				{
 					graphics::playSound(std::string(ASSETS_PATH) + "explosion.wav", 0.2f, false);
 					bullets.erase(j++);
-					//enemybullets.erase(i++);
 					ereaser = true;
 					break;
 				}
@@ -216,10 +234,10 @@ void Game::updateLevelScreen()
 			}
 		}
 	}
+
 	//upadate power up
 	if (powerUp)
 	{
-		//std::cout << "power up is here\n";
 		powerUp->update();
 
 		if (player)
@@ -231,12 +249,8 @@ void Game::updateLevelScreen()
 				powerUp = nullptr;
 				initializePowerUp = true;
 			}
-
-
 		}
-
 	}
-
 }
 
 void Game::updateEndScreen()
@@ -244,7 +258,6 @@ void Game::updateEndScreen()
 	if (graphics::getKeyState(graphics::SCANCODE_RETURN))
 	{
 		status = STATUS_PLAYING;
-
 	}
 	else if (graphics::getKeyState(graphics::SCANCODE_ESCAPE))
 	{
@@ -256,15 +269,22 @@ void Game::updateEndScreen()
 	}
 	if (powerUpActive)
 	{
-		
 		powerUpActive = false;
-		
 	}
 	if (powerUp)
 	{
 		delete powerUp;
 		powerUp = nullptr;
 		initializePowerUp = true;
+	}
+	if (!bullets.empty())
+	{
+		bullets.clear();
+	}
+	if (!enemybullets.empty())
+	{
+		enemybullets.clear();
+		initializeEnemyBullet = true;
 	}
 }
 
@@ -279,7 +299,7 @@ void Game::drawStartScreen()
 
 void Game::drawLevelScreen()
 {
-
+	//backgorund layer
 	float offset = CANVAS_HEIGHT * fmodf(graphics::getGlobalTime() / 1000.0f, 10.0f) / 10.0f;
 
 	graphics::Brush br;
@@ -294,7 +314,7 @@ void Game::drawLevelScreen()
 	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + offset, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 	graphics::drawRect(CANVAS_WIDTH / 2, -CANVAS_HEIGHT / 2 + offset, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
-
+	//player layer
 	if (player)
 	{
 		player->draw();
@@ -308,11 +328,13 @@ void Game::drawLevelScreen()
 		}
 	}
 
+	//enemy layer
 	if (enemy)
 	{
 		enemy->draw();
 	}
-	//enemy bullet
+
+	//enemy bullet layer
 	if (!enemybullets.empty())
 	{
 		std::list<Enemybullet>::iterator i = enemybullets.begin();
@@ -334,7 +356,6 @@ void Game::drawLevelScreen()
 		//draw life points
 		char score_info[40];
 		sprintf_s(score_info, "Score: %d", player->getScore());
-
 
 		graphics::Brush brush;
 		brush.fill_color[0] = 1.0f;
@@ -361,7 +382,6 @@ void Game::drawLevelScreen()
 	if (powerUp || !initializePowerUp)
 	{
 		powerUp->draw();
-
 	}
 }
 
@@ -377,7 +397,7 @@ void Game::drawEndScreen()
 	graphics::drawText(20.0f, CANVAS_HEIGHT / 2 + 27.5f , 25.0f, end_info2, br);
 }
 
-
+//checking if two disk have collision
 bool Game::checkCollision(Disk disk1,Disk disk2)
 {	
 	float dx = pow(disk1.dx - disk2.dx, 2);
@@ -390,10 +410,11 @@ bool Game::checkCollision(Disk disk1,Disk disk2)
 }
 
 
-
+//delete enemy player and check if it can enable powerup
 void Game::deleteEnemy()
 {
-	if (player && player->getScore() == 10) {
+	if (player && player->getScore() == 100) 
+	{
 		powerUp = new PowerUps(*this, enemy->getEnemy_x(), enemy->getEnemy_y());
 		initializePowerUp = false;
 	}
@@ -419,7 +440,7 @@ void Game::draw()
 
 void Game::init()
 {
-	//graphics::playMusic(std::string(ASSETS_PATH) + "music.mp3", 0.05f, true, 4000);
+	graphics::playMusic(std::string(ASSETS_PATH) + "music.mp3", 0.05f, true, 4000);
 	graphics::setFont(std::string(ASSETS_PATH) + "font.ttf");
 }
 

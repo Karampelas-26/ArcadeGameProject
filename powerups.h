@@ -18,6 +18,5 @@ public:
 	PowerUps(const class Game& mygame, float position_x, float position_y);
 	~PowerUps();
 	bool i_am_not_valid_power_up();
-	bool extraPowerUp();
 	Disk getCollisionHull() const override;
 };

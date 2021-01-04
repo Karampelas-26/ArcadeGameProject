@@ -1,1 +1,15 @@
-﻿  Demo.vcxproj -> C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\ArcadeGameProject\x64\Debug\Demod.exe
+﻿  Main.cpp
+  bullet.cpp
+  effects.cpp
+  enemy.cpp
+  enemy_bullet.cpp
+  enemy_bullet.h
+  game.cpp
+C:\Users\User\Desktop\arcade game\ArcadeGameProject-development\game.cpp(403,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\User\Desktop\arcade game\ArcadeGameProject-development\game.cpp(404,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  gameobject.cpp
+  player.cpp
+  powerups.cpp
+  Generating Code...
+x64\Debug\enemy_bullet.obj : warning LNK4042: object specified more than once; extras ignored
+  Demo.vcxproj -> C:\Users\User\Desktop\arcade game\ArcadeGameProject-development\x64\Debug\Demod.exe

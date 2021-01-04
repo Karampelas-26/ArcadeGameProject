@@ -1,2 +1,4 @@
 C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\ArcadeGameProject\x64\Debug\Demod.exe
 C:\Users\georg\Desktop\Karampelas\aueb\3rd_semester\cpp\ArcadeGameProject\x64\Debug\Demod.pdb
+C:\Users\User\Desktop\arcade game\ArcadeGameProject-development\x64\Debug\Demod.exe
+C:\Users\User\Desktop\arcade game\ArcadeGameProject-development\x64\Debug\Demod.pdb

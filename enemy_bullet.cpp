@@ -8,13 +8,11 @@ void Enemybullet::draw()
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(enemy_bullet_start_x, enemy_bullet_start_y, 20, 25, br);
 	graphics::resetPose();
-	
 }
 
 void Enemybullet::update()
 {
 	enemy_bullet_start_y += 2 *speed * graphics::getDeltaTime() / 100.0f;
-
 }
 
 void Enemybullet::init()

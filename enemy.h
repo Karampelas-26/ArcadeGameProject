@@ -24,5 +24,5 @@ public:
 	Enemy(const class Game& mygame);
 	~Enemy();
 	Disk getCollisionHull() const override;
-	bool Foo();
+	bool enableEnemy();
 };

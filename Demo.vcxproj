@@ -146,27 +146,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="background.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="effects.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="enemy_bullet.cpp" />
     <ClCompile Include="enemy_bullet.h" />
-
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="powerups.cpp" />
-    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="background.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="effects.h" />
     <ClInclude Include="enemy.h" />
-
     <ClInclude Include="game.h" />
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="player.h" />

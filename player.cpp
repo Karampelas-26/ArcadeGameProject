@@ -55,15 +55,6 @@ void Player::draw()
 	br.outline_opacity = 0.0f;
 	br.texture = std::string(ASSETS_PATH) + "airplane.png";
 	graphics::drawRect(player_x, player_y, 80, 55, br);
-
-
-	//draw disk of collision
-	graphics::Brush brush;
-	brush.fill_color[0] = 0.3f;
-	brush.fill_color[1] = 1.0f;
-	brush.fill_color[2] = 0.3f;
-	brush.fill_opacity = 0.5f;
-	graphics::drawDisk(player_x, player_y, 30.0f, brush);
 }
 
 void Player::init()

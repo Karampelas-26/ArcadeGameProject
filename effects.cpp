@@ -8,7 +8,6 @@ void Effects::draw()
 	br.outline_opacity = 0.0f;
 	br.texture = std::string(ASSETS_PATH) + "explosion1.png";
 	graphics::drawRect(cordinates_x, cordinates_y, 60.0f, 60.0f, br);
-
 }
 
 void Effects::update()

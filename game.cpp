@@ -70,9 +70,8 @@ void Game::updateLevelScreen()
 			}
 		}
 	}
-
-
-	if (initializeEnemy && graphics::getGlobalTime() > 2000) {
+	
+	if (initializeEnemy) {
 		enemy = new Enemy((*this));
 		initializeEnemy = false;
 

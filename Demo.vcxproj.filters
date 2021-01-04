@@ -68,6 +68,7 @@
     <ClInclude Include="bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+
     <ClInclude Include="enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>

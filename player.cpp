@@ -10,7 +10,9 @@ Player::Player(const Game& mygame)
 
 void Player::update()
 {
-	
+
+	graphics::MouseState mouse;
+	graphics::getMouseState(mouse);
 	if (graphics::getKeyState(graphics::SCANCODE_W))
 	{
 		player_y -= speed * graphics::getDeltaTime() / 10.0f;
@@ -27,7 +29,7 @@ void Player::update()
 	{
 		player_x += speed * graphics::getDeltaTime() / 10.0f;
 	}
-	
+
 	if (player_x < 0)
 	{
 		player_x = 0;
@@ -54,6 +56,7 @@ void Player::draw()
 	br.texture = std::string(ASSETS_PATH) + "airplane.png";
 	graphics::drawRect(player_x, player_y, 80, 55, br);
 
+
 	//draw disk of collision
 	graphics::Brush brush;
 	brush.fill_color[0] = 0.3f;
@@ -61,7 +64,6 @@ void Player::draw()
 	brush.fill_color[2] = 0.3f;
 	brush.fill_opacity = 0.5f;
 	graphics::drawDisk(player_x, player_y, 30.0f, brush);
-	
 }
 
 void Player::init()
